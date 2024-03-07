@@ -19,7 +19,7 @@ class User(db.Model):
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title="Главная")
 
 
 @app.route("/create_db")
@@ -34,11 +34,12 @@ def create_db():
 
 @app.route("/auth", methods=['POST', 'GET'])
 def auth():
+    ic(request, type(request))
     if request.method == 'POST':
         ic(request.form['login'])
         ic(request.form['password'])
 
-    return render_template('auth.html')
+    return render_template('auth.html', title="Вход в приложение")
 
 
 if __name__ == "__main__":
