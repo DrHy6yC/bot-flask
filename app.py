@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from icecream import ic
+
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -28,6 +30,15 @@ def create_db():
     #     db.create_all()
     #     isDATABASE = True
     return render_template('create_db.html')
+
+
+@app.route("/auth", methods=['POST', 'GET'])
+def auth():
+    if request.method == 'POST':
+        ic(request.form['login'])
+        ic(request.form['password'])
+
+    return render_template('auth.html')
 
 
 if __name__ == "__main__":
