@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
- <h5>База создана</h5>
+ <h5>Пересоздать БД?</h5>
+ <form method="post" class="form-control">
+  <input type="checkbox" name="rewrite">
+  <br><button>Сделaть</button>
+ </form>
 {% endblock %}

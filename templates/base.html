@@ -22,8 +22,9 @@
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="#" class="active">Главная</a></li>
-              <li class="scroll-to-section"><a href="#" class="active">Войти</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('index') }}" class="active">Главная</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('auth') }}" class="active">Войти</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('create_db') }}" class="active">Перезаписать БД</a></li>
           </ul>
         {% endblock %}
       </header>
