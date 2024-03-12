@@ -23,5 +23,4 @@ class AnswerUser(db.Model):
 
 class Question(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    num_question = db.Column(db.Integer(), nullable=False)
     question = db.Column(db.String(100), nullable=False, unique=True)

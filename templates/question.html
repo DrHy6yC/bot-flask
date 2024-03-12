@@ -3,5 +3,20 @@
 {% extends 'base.html' %}
 {% block content %}
  <h2>Вопросы</h2>
- {{ for question in questions }}
+ {% with messages = get_flashed_messages() %}
+ {% if messages %}
+     <div class="notification is-danger">
+         {{ messages[0] }}
+     </div>
+ {% endif %}
+ {% endwith %}
+ <form method="POST" action="">
+    <ul>
+        {% for question in questions %}
+        <li><a>{{question.id}}. {{question.question}}</a></li>
+        <input type="text" name="{{question.id}}" placeholder="Ответ:">
+        {% endfor %}
+    </ul>
+    <button>Ответить</button>
+</form>
 {% endblock %}

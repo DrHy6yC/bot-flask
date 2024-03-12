@@ -1,0 +1,16 @@
+<!-- templates/test.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" action="">
+    <h2>Добавить вопрос</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <input type="text" name="question" placeholder="Введите вопрос:"> 
+</form>
+{% endblock %}
