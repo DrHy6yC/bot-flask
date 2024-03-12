@@ -75,7 +75,7 @@ def login_post():
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
-    return redirect(url_for('index', title='Войти'))
+    return redirect(request.args.get('next') or url_for('index', title='Войти'))
 
 
 @auth.route('/logout')

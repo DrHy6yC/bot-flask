@@ -5,9 +5,11 @@ from flask_login import login_required
 
 from create_app import app, db
 from authorization import auth as auth_blueprint
+from quize import quize as quize_blueprint
 
 
 app.register_blueprint(auth_blueprint)
+app.register_blueprint(quize_blueprint)
 
 
 @app.route("/")
