@@ -22,6 +22,7 @@ def index():
 def create_db():
     if request.method == 'POST':
         if request.get_data(as_text=True):
+            ic(request.get_data(as_text=True))
             db.drop_all()
             db.create_all()
     return render_template('create_db.html')
@@ -35,3 +36,5 @@ def test():
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
+
+
