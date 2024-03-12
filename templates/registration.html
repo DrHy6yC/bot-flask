@@ -9,11 +9,11 @@
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="notification is-danger">
-                {{ messages[0] }}. Go to <a href="{{ url_for('login') }}">login page</a>.
+                <br>{{ messages[0] }}. Попробуйте <a href="{{ url_for('auth.login') }}">Войти</a>.
             </div>
         {% endif %}
         {% endwith %}
-        <form method="POST" action="{{ url_for('registration') }}">
+        <form method="POST" action="{{ url_for('auth.registration') }}">
             <div class="field">
                 <div class="control">
                     <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
