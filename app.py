@@ -3,7 +3,7 @@ from icecream import ic
 from flask import render_template, request
 from flask_login import login_required
 
-from create_app import app, db
+from create_app import app, db, DB_OWERWRITE
 from authorization import auth as auth_blueprint
 from quize import quize as quize_blueprint
 
@@ -35,6 +35,10 @@ def test():
 
 
 if __name__ == "__main__":
+    with app.app_context():
+        if DB_OWERWRITE:
+            db.drop_all()
+            db.create_all()
     app.run(debug=True, port=3000)
 
 

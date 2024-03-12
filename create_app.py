@@ -10,14 +10,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-DB_HOST: str = getenv('DB_HOST')
-DB_PORT: str = getenv('DB_PORT')
-DB_USER: str = getenv('DB_USER')
-DB_PASS: str = getenv('DB_PASS')
-DB_NAME: str = getenv('DB_NAME')
-DB_SQLite: str = getenv('DB_SQLite')
-DB_DBMS: str = getenv('DB_DBMS')
-
 
 def get_uri() -> str:
     driver = ""
@@ -35,7 +27,25 @@ def get_uri() -> str:
     return uri
 
 
+def str_bool(text: str) -> bool:
+    result: bool = False
+    if text.lower() == "true":
+        result = True
+    return result
+
+
+DB_HOST: str = getenv('DB_HOST')
+DB_PORT: str = getenv('DB_PORT')
+DB_USER: str = getenv('DB_USER')
+DB_PASS: str = getenv('DB_PASS')
+DB_NAME: str = getenv('DB_NAME')
+DB_SQLite: str = getenv('DB_SQLite')
+DB_DBMS: str = getenv('DB_DBMS')
+
+DB_OWERWRITE = str_bool(getenv('DB_OWERWRITE'))
+
 app.config['SQLALCHEMY_DATABASE_URI'] = get_uri()
 app.config['SECRET_KEY'] = 'p?ikvBmp6@'
 
 db = SQLAlchemy(app)
+
