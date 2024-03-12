@@ -1,3 +1,5 @@
+<!-- templates/base.html -->
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -14,18 +16,36 @@
   <body>
       <!-- ***** Header Area Start ***** -->
       <header>
-        {% block header%}
-            <!-- ***** Logo End ***** -->
-            <a href="#" class="logo">
-                <h1>{{ name_logo }}</h1>
+        <!-- ***** Logo End ***** -->
+        <a href="#" class="logo">
+            <h1>{{ name_logo }}</h1>
+        </a>
+        <!-- ***** Logo End ***** -->
+        <!-- ***** Menu Start ***** -->
+        <ul class="nav">
+          <li class="scroll-to-section"><a href="{{ url_for('index') }}" class="active">Главная</a></li>
+          <li class="scroll-to-section"><a href="{{ url_for('test') }}" class="active">Tect</a></li>
+          <li class="scroll-to-section"><a href="{{ url_for('create_db') }}" class="active">Перезаписать БД</a></li>
+        </ul>
+        {% if current_user.is_authenticated %}
+            <a href="#" class="navbar-item">
+                Профиль
             </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li class="scroll-to-section"><a href="{{ url_for('index') }}" class="active">Главная</a></li>
-              <li class="scroll-to-section"><a href="{{ url_for('auth') }}" class="active">Войти</a></li>
-              <li class="scroll-to-section"><a href="{{ url_for('create_db') }}" class="active">Перезаписать БД</a></li>
-          </ul>
+        {% endif %}
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('login') }}" class="navbar-item">
+                Войти
+            </a>
+            <a href="{{ url_for('registration') }}" class="navbar-item">
+                Зарегистрироваться
+            </a>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}" class="navbar-item">
+                Logout
+            </a>
+        {% endif %}
+        {% block header%}
         {% endblock %}
       </header>
       <!-- ***** Header Area End ***** -->
