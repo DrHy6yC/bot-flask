@@ -3,7 +3,7 @@ from icecream import ic
 from flask import render_template
 from flask_login import login_required
 
-from create_app import app, db, DB_OWERWRITE
+from create_app import app, db, DB_OWERWRITE, HOST, PORT
 from api import api, api_blueprint
 from authorization import auth as auth_blueprint
 from quize import quize as quize_blueprint
@@ -36,4 +36,4 @@ if __name__ == "__main__":
             db.drop_all()
             db.create_all()
             ic("Таблицы пересозданы")
-    app.run(debug=True, port=3000)
+    app.run(debug=True, host=HOST, port=PORT)

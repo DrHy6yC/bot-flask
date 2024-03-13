@@ -44,6 +44,9 @@ DB_DBMS: str = getenv('DB_DBMS')
 
 DB_OWERWRITE = str_bool(getenv('DB_OWERWRITE'))
 
+HOST: str = getenv('HOST')
+PORT: str = getenv('PORT')
+
 app.config['SQLALCHEMY_DATABASE_URI'] = get_uri()
 app.config['SECRET_KEY'] = 'p?ikvBmp6@'
 
