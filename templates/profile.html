@@ -1,0 +1,27 @@
+<!-- templates/questions.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+ <h2>Ответы пользователя</h2>
+ {% with messages = get_flashed_messages() %}
+ {% if messages %}
+     <div class="notification is-danger">
+         {{ messages[0] }}
+     </div>
+ {% endif %}
+ {% endwith %}
+ <form method="POST" action="">
+    <ul>
+        {% for answer in answers_user %}
+        <li><a>{{answer.question}}</a></li>
+        <input type="text" required name="{{answers_user.id}}" placeholder="Ответ:" value="{{answer.answer_user}}">
+        {% endfor %}
+    </ul>
+    {% if answers_user %}
+    <button>Изменить ответы</button>
+    {% endif %}
+    {% if not answers_user %}
+    <h4>Ответов пока что нет, ответить на вопросы можно <a href="{{ url_for('quize.questions') }}" class="active">ТУТ</a> </h4>
+    {% endif %}
+</form>
+{% endblock %}

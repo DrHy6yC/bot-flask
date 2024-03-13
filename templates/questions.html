@@ -20,7 +20,7 @@
     {% if questions %}
     <button>Ответить</button>
     {% endif %}
-    {% if not question %}
+    {% if not questions %}
     <h4>Вопросов пока что нет, можно добавить <a href="{{ url_for('quize.add_question') }}" class="active">ТУТ</a> </h4>
     {% endif %}
 </form>
