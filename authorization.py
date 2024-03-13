@@ -25,7 +25,7 @@ def load_user(user_id):
 
 @auth.route("/registration", methods=['GET'])
 def registration():
-    return render_template('registration.html', title="Войти")
+    return render_template('registration.html', title="Зарегистрироваться")
 
 
 @auth.route("/registration", methods=['POST'])
@@ -48,15 +48,20 @@ def registration_post():
         return redirect(url_for('auth.registration'))
     else:
         try:
-            new_user = User(email=email, login=user_login, password=generate_password_hash(password, method='pbkdf2'))
+            new_user = User(
+                email=email,
+                login=user_login,
+                password=generate_password_hash(
+                    password,
+                    method='pbkdf2'
+                )
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user)
         except Exception as error:
             flash(f'Ошибка БД: {error}', 'error')
-
-    db.session.add(new_user)
-    db.session.commit()
-    login_user(new_user)
-
-    return redirect(url_for('auth.login', title="Регистрация"))
+    return redirect(url_for('index'))
 
 
 @auth.route("/login", methods=['GET'])
@@ -77,7 +82,7 @@ def login_post():
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
-    return redirect(request.args.get('next') or url_for('index', title='Войти'))
+    return redirect(request.args.get('next') or url_for('index'))
 
 
 @auth.route('/logout')

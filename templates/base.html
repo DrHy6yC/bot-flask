@@ -25,8 +25,9 @@
         <ul class="nav">
           <li class="scroll-to-section"><a href="{{ url_for('index') }}" class="active">Главная</a></li>
           <li class="scroll-to-section"><a href="{{ url_for('test') }}" class="active">Tect</a></li>
+          <li class="scroll-to-section"><a href="{{ url_for('api.get_all_question') }}" class="active">API</a></li>
           {% if current_user.is_authenticated %}
-          <li class="scroll-to-section"><a href="{{ url_for('quize.questions') }}" class="active">Викторина</a></li>
+          <li class="scroll-to-section"><a href="{{ url_for('quize.question_quize') }}" class="active">Викторина</a></li>
           <li class="scroll-to-section"><a href="{{ url_for('quize.add_question') }}" class="active">Добавить вопрос</a></li>
         {% endif %}
         </ul>

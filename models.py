@@ -8,6 +8,7 @@ class User(UserMixin, db.Model):
     login = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
+    flag_admin = db.Column(db.Boolean)
     answer = db.relationship('AnswerUser', backref='user', lazy='dynamic')
 
     def get_id(self):
@@ -17,7 +18,6 @@ class User(UserMixin, db.Model):
 class AnswerUser(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    # Изначально хотель сделать через Foreign key но при удалении вопросов невозможно было бы посмотреть ответы пользователя
     question = db.Column(db.String(100), nullable=False)
     answer_user = db.Column(db.String(100), nullable=False)
     attempt_user = db.Column(db.Integer, nullable=False)

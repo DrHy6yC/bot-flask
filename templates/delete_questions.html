@@ -1,0 +1,24 @@
+<!-- templates/questions.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+ <h2>Вопросы</h2>
+ {% with messages = get_flashed_messages() %}
+ {% if messages %}
+     <div class="notification is-danger">
+         {{ messages[0] }}
+     </div>
+ {% endif %}
+ {% endwith %}
+ <form method="POST" action="{{ url_for('quize.delete_question') }}">
+    <ul>
+        {% for question in questions %}
+        <li><a>{{question.id}}. {{question.question}}</a></li>
+        <p><input type="hidden"  name="id" value="{{question.id}}"></p>
+        <p><input type="submit" value="Удалить"></p>
+        {% endfor %}
+</form>
+{% if not questions %}
+    <h3>Вопросов нет</h3>
+{% endif %}
+{% endblock %}
