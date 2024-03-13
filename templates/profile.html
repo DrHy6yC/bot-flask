@@ -10,18 +10,19 @@
      </div>
  {% endif %}
  {% endwith %}
- <form method="POST" action="">
-    <ul>
-        {% for answer in answers_user %}
-        <li><a>{{answer.question}}</a></li>
+ 
+    {% for answer in answers_user %}
+    <a>{{answer.question}}</a>
+    <form method="POST" action="">
         <input type="text" required name="{{answers_user.id}}" placeholder="Ответ:" value="{{answer.answer_user}}">
-        {% endfor %}
-    </ul>
-    {% if answers_user %}
-    <button>Изменить ответы</button>
-    {% endif %}
+    </form>
+    <form method="POST" action="{{ url_for('quize.delete_answer') }}/">
+        <!-- скрытый параметр -->
+        <input type="hidden" name="id" value="{{answers_user.id}}">
+        <input type="submit" value="Удалить">
+    </form>
+    {% endfor %}
     {% if not answers_user %}
     <h4>Ответов пока что нет, ответить на вопросы можно <a href="{{ url_for('quize.questions') }}" class="active">ТУТ</a> </h4>
     {% endif %}
-</form>
 {% endblock %}

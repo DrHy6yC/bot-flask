@@ -1,6 +1,6 @@
 from icecream import ic
 
-from flask import Blueprint, render_template, flash, request
+from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask_login import current_user
 from sqlalchemy import desc
 
@@ -53,3 +53,20 @@ def add_question():
             flash("Вопрос добавлен", 'info')
 
     return render_template('add_question.html', title="Вопросы")
+
+
+@quize.route("/delete_answer", methods=['POST'])
+def delete_answer():
+    ic(request.form.items())
+    id_answer = request.form['id']
+    answer = AnswerUser.query.get(id_answer)
+    ic(id_answer)
+    if id_answer:
+        db.session.delete(answer)
+        db.session.commit()
+        flash("Удален ответ")
+    else:
+        flash("Ответ не удален")
+    answers_user = AnswerUser.query.filter_by(id_user=current_user.id)
+    ic(answers_user)
+    return redirect(url_for('profile.user'))
