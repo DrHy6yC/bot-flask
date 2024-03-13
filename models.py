@@ -17,7 +17,8 @@ class User(UserMixin, db.Model):
 class AnswerUser(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
-    num_question = db.Column(db.Integer(), nullable=False)
+    # Изначально хотель сделать через Foreign key но при удалении вопросов невозможно было бы посмотреть ответы пользователя
+    question = db.Column(db.String(100), nullable=False, unique=True)
     answer_user = db.Column(db.String(100), nullable=False)
 
 

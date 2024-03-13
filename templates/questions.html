@@ -1,4 +1,4 @@
-<!-- templates/test.html -->
+<!-- templates/questions.html -->
 
 {% extends 'base.html' %}
 {% block content %}
@@ -14,9 +14,14 @@
     <ul>
         {% for question in questions %}
         <li><a>{{question.id}}. {{question.question}}</a></li>
-        <input type="text" name="{{question.id}}" placeholder="Ответ:">
+        <input type="text" required name="{{question.id}}" placeholder="Ответ:">
         {% endfor %}
     </ul>
+    {% if questions %}
     <button>Ответить</button>
+    {% endif %}
+    {% if not question %}
+    <h4>Вопросов пока что нет, можно добавить <a href="{{ url_for('quize.add_question') }}" class="active">ТУТ</a> </h4>
+    {% endif %}
 </form>
 {% endblock %}

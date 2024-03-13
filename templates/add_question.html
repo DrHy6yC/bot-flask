@@ -1,4 +1,4 @@
-<!-- templates/test.html -->
+<!-- templates/add_question.html -->
 
 {% extends 'base.html' %}
 {% block content %}
@@ -11,6 +11,7 @@
         </div>
     {% endif %}
     {% endwith %}
-    <input type="text" name="question" placeholder="Введите вопрос:"> 
+    <input type="text" required name="question" placeholder="Введите вопрос:"> 
+    <button>Добавить вопрос</button>
 </form>
 {% endblock %}

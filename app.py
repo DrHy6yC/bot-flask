@@ -1,6 +1,6 @@
 from icecream import ic
 
-from flask import render_template, request, flash
+from flask import render_template
 from flask_login import login_required
 
 from create_app import app, db, DB_OWERWRITE
@@ -15,18 +15,6 @@ app.register_blueprint(quize_blueprint)
 @app.route("/")
 def index():
     return render_template('index.html', title="Главная")
-
-
-# @app.route("/create_db", methods=['POST', 'GET'])
-# @login_required
-# def create_db():
-#     flash
-#     if request.method == 'POST':
-#         if request.get_data(as_text=True):
-#             ic(request.get_data(as_text=True))
-#             db.drop_all()
-#             db.create_all()
-#     return render_template('create_db.html')
 
 
 @app.route("/test")

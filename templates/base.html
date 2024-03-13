@@ -25,24 +25,28 @@
         <ul class="nav">
           <li class="scroll-to-section"><a href="{{ url_for('index') }}" class="active">Главная</a></li>
           <li class="scroll-to-section"><a href="{{ url_for('test') }}" class="active">Tect</a></li>
+          {% if current_user.is_authenticated %}
+          <li class="scroll-to-section"><a href="{{ url_for('quize.questions') }}" class="active">Викторина</a></li>
+          <li class="scroll-to-section"><a href="{{ url_for('quize.add_question') }}" class="active">Добавить вопрос</a></li>
+        {% endif %}
         </ul>
         {% if current_user.is_authenticated %}
-            <a href="#" class="navbar-item">
-                Профиль
-            </a>
+          <a href="#" class="navbar-item">
+              Профиль {{current_user.login}}
+          </a>
         {% endif %}
         {% if not current_user.is_authenticated %}
-            <a href="{{ url_for('auth.login') }}" class="navbar-item">
-                Войти
-            </a>
-            <a href="{{ url_for('auth.registration') }}" class="navbar-item">
-                Зарегистрироваться
-            </a>
+          <a href="{{ url_for('auth.login') }}" class="navbar-item">
+              Войти
+          </a>
+          <a href="{{ url_for('auth.registration') }}" class="navbar-item">
+              Зарегистрироваться
+          </a>
         {% endif %}
         {% if current_user.is_authenticated %}
-            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
-                Logout
-            </a>
+          <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+              Logout
+          </a>
         {% endif %}
         {% block header%}
         {% endblock %}
