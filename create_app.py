@@ -48,4 +48,3 @@ app.config['SQLALCHEMY_DATABASE_URI'] = get_uri()
 app.config['SECRET_KEY'] = 'p?ikvBmp6@'
 
 db = SQLAlchemy(app)
-

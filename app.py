@@ -37,5 +37,3 @@ if __name__ == "__main__":
             db.create_all()
             ic("Таблицы пересозданы")
     app.run(debug=True, port=3000)
-
-

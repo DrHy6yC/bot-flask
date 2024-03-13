@@ -99,6 +99,7 @@ def change_answer():
 def delete_question():
     if request.method == 'POST':
         id_question = request.form['id']
+        ic(id_question)
         question = Question.query.get(id_question)
         if question:
             db.session.delete(question)
